@@ -152,3 +152,4 @@
 
 "自动命令，每次输入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
 ""autocmd! bufwritepost .vimrc source ~/.vimrc
+
