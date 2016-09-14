@@ -133,6 +133,8 @@
 	Plugin 'mattn/emmet-vim'
 	Plugin 'vim-less'
 
+	Plugin 'digitaltoad/vim-jade.git'
+
 	call vundle#end()  "required"
 	filetype plugin indent on "required"
 "}}}
