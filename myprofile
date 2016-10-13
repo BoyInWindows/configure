@@ -1,21 +1,21 @@
-### 我的配置 ###
+# 我的配置
+
 	# source ~/configure/myprofile
 
 ## aliases
+
 	# tmux
-	alias tmuxf='tmux -f ~/configure/tmux/tmux.conf'
+	#ln -s ~/configure/tmux/tmux.conf .tmux.conf
 	alias tmuxa='tmux attach'
 
 	# vim
-	#alias vims='vim -S ~/configure/vim/vimrc'
-	#别名方式不加载插件
-	#~/.vimrc << "~/configure/vim/vimrc"
 	#ln -s ~/configure/vim/vimrc .vimrc
 	
 	# sudo 环境变量 别名方式
 	alias sudop='sudo env PATH=$PATH'
 
 ## path
+
 	# java jdk
 	export JAVA_HOME=/opt/jdk1.8.0
 	export PATH=$JAVA_HOME/bin:$PATH
