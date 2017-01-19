@@ -122,6 +122,8 @@
 	"使用vundle来管理插件，这个必须有"
 	Plugin 'VundleVim/Vundle.vim'
 
+	Plugin 'editorconfig/editorconfig-vim'
+
 	Plugin 'The-NERD-tree'
 	Plugin 'The-NERD-Commenter'
 
@@ -131,7 +133,7 @@
 	Plugin 'ack.vim'
 
 	Plugin 'mattn/emmet-vim'
-	Plugin 'vim-less'
+	""Plugin 'vim-less'
 
 	Plugin 'digitaltoad/vim-jade.git'
 
@@ -141,6 +143,7 @@
 
 "{{{ ->插件配置
 	nmap <leader>nt :NERDTreeToggle<cr>
+	noremap <c-\> :NERDTreeToggle<cr>
 
 	" vim-airline
 	let g:airline#extensions#tabline#enabled = 1
@@ -154,3 +157,10 @@
 
 "自动命令，每次输入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
 ""autocmd! bufwritepost .vimrc source ~/.vimrc
+
+if exists('$TMUX')
+	"echo 'yes'
+else
+	"echo 'no'
+endif
+
