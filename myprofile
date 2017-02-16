@@ -22,7 +22,7 @@
 	export CLASSPATH=.:$JAVA_HOME/lib/dt,jar:$JAVA_HOME/lib/tools.jar
 
 	# nodejs
-	export NODE_HOME=/opt/node
-	export PATH=$PATH:$NODE_HOME/bin
-	export NODE_PATH=$PATH:$NODE_HOME/lib/node_modules
+	#export NODE_HOME=/opt/node
+	#export PATH=$PATH:$NODE_HOME/bin
+	#export NODE_PATH=$PATH:$NODE_HOME/lib/node_modules
 	
