@@ -130,12 +130,18 @@
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'EasyMotion'
 
-	Plugin 'ack.vim'
+	" 类似sublime text 多光标批量操作
+	Plugin 'terryma/vim-multiple-cursors'
 
+
+	" 类似 ctrlp 模糊查找插件模糊查找插件
+	Plugin 'Yggdroot/LeaderF'
+
+	" Emmet(原名:Zen Coding)是前端开发快速输入代码一种方式
 	Plugin 'mattn/emmet-vim'
-	""Plugin 'vim-less'
 
-	Plugin 'digitaltoad/vim-jade.git'
+	""Plugin 'vim-less'
+	""Plugin 'digitaltoad/vim-jade.git'
 
 	call vundle#end()  "required"
 	filetype plugin indent on "required"
@@ -158,9 +164,9 @@
 "自动命令，每次输入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
 ""autocmd! bufwritepost .vimrc source ~/.vimrc
 
-if exists('$TMUX')
-	"echo 'yes'
-else
-	"echo 'no'
-endif
+""if exists('$TMUX')
+""	"echo 'yes'
+""else
+""	"echo 'no'
+""endif
 
