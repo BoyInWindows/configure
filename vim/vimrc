@@ -5,6 +5,7 @@
 	filetype on  "启用文件类型侦测
 	filetype plugin on	"针对不同的文件类型加载对应的插件
 	filetype plugin indent on  "启用错进
+	syntax on		" 语法高亮
 	set mouse-=a	"禁用鼠标
 	set smartindent  "启用只能对齐方式
 	set autoindent	"每行的缩进值与上一行相等
@@ -60,11 +61,12 @@
 	let mapleader=","  "修改leader键为逗号
 
 	nnoremap <leader><space> :noh<cr>  "使用<leader>空格来取消高亮
+	nnoremap <leader>p :set paste!<cr>  "切换粘帖模式
 
-	"文件类型切换
-	nmap <leader>fj :set ft=javascript<cr>
-	nmap <leader>fc :set ft=css<cr>
-	nmap <leader>fh :set ft=html<cr>
+	" 文件类型切换
+	" nmap <leader>fj :set ft=javascript<cr>
+	" nmap <leader>fc :set ft=css<cr>
+	" nmap <leader>fh :set ft=html<cr>
 	
 	"标签切换"
 	set autochdir
@@ -119,26 +121,50 @@
 	set rtp+=/home/boyin/.vim/bundle/Vundle.vim
 	call vundle#begin()
 
-	"使用vundle来管理插件，这个必须有"
+	" 使用vundle来管理插件，这个必须有"
 	Plugin 'VundleVim/Vundle.vim'
 
-	Plugin 'editorconfig/editorconfig-vim'
+	" editorconfig先注释了
+	" Plugin 'editorconfig/editorconfig-vim'
 
-	Plugin 'The-NERD-tree'
+	" Plugin 'The-NERD-tree'
+	Plugin 'scrooloose/nerdtree'
+	Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 	Plugin 'The-NERD-Commenter'
 
+	" 语法高亮
+	Plugin 'sheerun/vim-polyglot'
+
+	" 类似vim-powerline的工具栏美化工具
 	Plugin 'vim-airline/vim-airline'
+
+	" 快速移动光标
 	Plugin 'EasyMotion'
+
+	" 快速修环绕字符
+	Plugin 'tpope/vim-surround'
 
 	" 类似sublime text 多光标批量操作
 	Plugin 'terryma/vim-multiple-cursors'
 
-
-	" 类似 ctrlp 模糊查找插件模糊查找插件
+	" 类似 ctrlp 模糊查找插件
 	Plugin 'Yggdroot/LeaderF'
+
+	" Track the engine.
+	Plugin 'SirVer/ultisnips'
+
+	" Snippets are separated from the engine. Add this if you want them:
+	Plugin 'honza/vim-snippets'
 
 	" Emmet(原名:Zen Coding)是前端开发快速输入代码一种方式
 	Plugin 'mattn/emmet-vim'
+
+
+	" for javascript
+	Plugin 'pangloss/vim-javascript'
+	" for react.js
+	Plugin 'mxw/vim-jsx'
 
 	""Plugin 'vim-less'
 	""Plugin 'digitaltoad/vim-jade.git'
@@ -157,9 +183,25 @@
 	let g:airline#extensions#tabline#left_alt_sep = '|'
 
 	" easy-motion
-	let g:EasyMotion_leader_key = ','
+	let g:EasyMotion_leader_key = '\'
+
+	" LeaderF
+	let g:Lf_ShortcutF = '<C-P>'
+
+	" UltiSnips
+	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+	" If you want :UltiSnipsEdit to split your window.
+	let g:UltiSnipsEditSplit="vertical"
+	let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+
+	" vim-jsx"
+	let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
 
 "}}}
+
 
 "自动命令，每次输入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
 ""autocmd! bufwritepost .vimrc source ~/.vimrc
