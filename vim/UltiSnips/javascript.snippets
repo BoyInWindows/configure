@@ -1,11 +1,16 @@
-# for es6
+# --- all ---
+snippet ` "``"
+\`${1}\`$0
+endsnippet
+
+# --- for es6 ---
 
 snippet ipt "import something" b
 import ${1:module} from '${2:filename}';
 $0
 endsnippet
 
-# for dva tag
+# --- for dva tag ---
 
 snippet dvadiv "dva div tag"
 <div className=\{styles.${1}\}>$0</div>

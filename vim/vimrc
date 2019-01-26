@@ -1,5 +1,147 @@
 
-"{{{ ->linux 配置
+"{{{ -> vundle 配置
+	set nocompatible	"禁用vi兼容模式"
+	filetype off	"禁用文件类型侦测"
+
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+
+	" 使用vundle来管理插件，这个必须有"
+	Plugin 'VundleVim/Vundle.vim'
+
+  " editorconfig先注释了
+  Plugin 'editorconfig/editorconfig-vim'
+
+	"{{{ The-NERD-tree, Commenter
+		" Plugin 'The-NERD-tree'
+		Plugin 'scrooloose/nerdtree'
+		Plugin 'Xuyuanp/nerdtree-git-plugin'
+		Plugin 'jistr/vim-nerdtree-tabs'
+
+		Plugin 'The-NERD-Commenter'
+
+		map <leader>t :NERDTreeToggle<CR>
+		noremap <c-\> :NERDTreeTabsToggle<cr>
+		let g:NERDSpaceDelims = 1
+		" NERDRemoveExtraSpaces
+		" 关闭NERDTree快捷键
+		" 显示行号
+		" let NERDTreeShowLineNumbers=1
+		" let NERDTreeAutoCenter=1
+		" 是否显示隐藏文件
+		let NERDTreeShowHidden=1
+		" 设置宽度
+		let NERDTreeWinSize=31
+		" 在终端启动vim时，共享NERDTree
+		" let g:nerdtree_tabs_open_on_console_startup=1
+		" 忽略一下文件的显示
+		let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+		" 显示书签列表
+		let NERDTreeShowBookmarks=1
+	"}}}
+
+	" 语法高亮
+	Plugin 'sheerun/vim-polyglot'
+
+	"{{{ vim-airline
+		" 类似vim-powerline的工具栏美化工具
+		Plugin 'vim-airline/vim-airline'
+
+		let g:airline#extensions#tabline#enabled = 1
+		let g:airline#extensions#tabline#left_sep = ' '
+		let g:airline#extensions#tabline#left_alt_sep = '|'
+	"}}}
+
+	"{{{ EasyMotion
+		" 快速移动光标
+		Plugin 'EasyMotion'
+
+		" easy-motion
+		let g:EasyMotion_leader_key = 'm'
+	"}}}
+
+	" 快速修环绕字符
+	Plugin 'tpope/vim-surround'
+
+	" 类似sublime text 多光标批量操作 <C-n>
+	Plugin 'terryma/vim-multiple-cursors'
+
+	"{{{" LeaderF
+		" 类似 ctrlp 模糊查找插件
+		Plugin 'Yggdroot/LeaderF'
+		
+		let g:Lf_ShortcutF = '<C-P>'
+		let g:Lf_WildIgnore = {
+						\ 'dir': ['node_modules','.svn','.git','.hg'],
+						\ 'file': []
+						\}
+	"}}}
+
+	"{{{" UltiSnips
+		Plugin 'SirVer/ultisnips'
+		
+		" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+		let g:UltiSnipsExpandTrigger="<tab>"
+		let g:UltiSnipsJumpForwardTrigger="<tab>"
+		let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+		" If you want :UltiSnipsEdit to split your window.
+		let g:UltiSnipsEditSplit="vertical"
+		" let g:UltiSnipsSnippetsDir="~/configure/vim/UltiSnips"
+		let g:UltiSnipsSnippetDirectories=["~/configure/vim/UltiSnips"]
+	"}}}
+
+	" Snippets are separated from the engine. Add this if you want them:
+	Plugin 'honza/vim-snippets'
+
+	" Emmet(原名:Zen Coding)是前端开发快速输入代码一种方式
+	Plugin 'mattn/emmet-vim'
+
+	" for javascript
+	Plugin 'pangloss/vim-javascript'
+	" for react.js
+	Plugin 'mxw/vim-jsx'
+	" vim-jsx"
+	let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
+
+	"{{{ ale, perttier
+		" Plugin 'w0rp/ale'
+
+		" let g:ale_lint_on_save = 1
+		" let g:ale_lint_on_text_changed = 'never'
+		" " disable the Ale HTML linters
+		" let g:ale_linters = {
+		" \   'html': [],
+		" \}
+		" let g:ale_set_highlights = 0
+
+		" " stop Elm.vim trying to show compiler erorrs in Vim
+		" let g:elm_format_fail_silently = 1
+
+		" " set Prettier up to run on save
+		" let g:ale_fixers = {}
+		" let g:ale_fixers['javascript'] = [
+		" \ 'prettier', 'eslint'
+		" \]
+		" let g:ale_fix_on_save = 1
+		" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --no-semi'
+	"}}}
+
+	" lol, go fuxk yourself
+	" Plugin 'uguu-org/vim-matrix-screensaver'
+
+	""Plugin 'vim-less'
+	""Plugin 'digitaltoad/vim-jade.git'
+
+	Plugin 'peaksea'
+
+	" Plugin 'vimim/vimim'
+	" Plugin 'file:///home/brch/Downloads/gitclone/vimp'
+
+	call vundle#end()  "required"
+	filetype plugin indent on "required"
+"}}}
+
+"{{{ -> Vim 配置
 
 	set nocompatible	"不要兼容vi
 	filetype on  "启用文件类型侦测
@@ -7,19 +149,23 @@
 	filetype plugin indent on  "启用错进
 	syntax on		" 语法高亮
 	set mouse-=a	"禁用鼠标
+
+	" 缩进定义
 	set smartindent  "启用只能对齐方式
 	set autoindent	"每行的缩进值与上一行相等
 	set cindent	"使用C/C++语言的自动缩进方式
 
 	set tabstop=2  "设置tab键的宽度
-	""set expandtab  "将tab键转换为空格
-	set noexpandtab "将空格转换为tab
+	set expandtab  "将tab键转换为空格
+	" set noexpandtab "将空格转换为tab
 	"%retab! "若不加! 则只处理行首的tab
 	set shiftwidth=2	"换行时自动错进2个空格
 	"set softtabstop=2  "逢2空格进1制表符
 	"set smarttab	"指定按一次backspace就删除shiftwidth宽度的空格
+  set backspace=2     "退格键可以删除任何东西
 
-	set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+	" set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+	set encoding=utf-8
 	colo default	"默认主题什么东西
 
 	set foldenable "启用折叠
@@ -32,12 +178,37 @@
 	set ignorecase	"搜索模式里忽略大小写
 	set smartcase  "如果搜索模式包含大写字符,有以上选项才有效
 
-	""set number	"显示行号
-	"set relativenumber  "相对行号 想要相对行号起作用要放在显示行号后面
+	" set number	"显示行号
+	" set relativenumber  "相对行号 想要相对行号起作用要放在显示行号后面
 	set laststatus=2	"启用状态栏信息
 	set cmdheight=2  "设置命令行的高度为2,默认为1
+	set showcmd "在状态栏显示命令
+
+	" set showmatch " 高亮显示匹配的括号 
+	" set matchtime=5 " 匹配括号高亮的时间（单位是十分之一秒） 
 
 	set cursorline	"设置光标高亮显示
+	autocmd InsertLeave * set cursorline
+	autocmd InsertEnter * set nocursorline 
+
+	" Change cursor shape in different modes
+	" For VTE compatible terminals (urxvt, st, xterm, gnome-terminal 3.x and others)
+	let &t_SI = "\<Esc>[6 q"
+	let &t_SR = "\<Esc>[4 q"
+	let &t_EI = "\<Esc>[2 q"
+
+	" 光标切换 for xfce4-terminal
+	" if has("autocmd")
+		" au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_IBEAM/' ~/.config/xfce4/terminal/terminalrc"                                                                                          
+		" au InsertEnter * silent execute "!sed -i.bak -e '/MiscCursorBlinks/s/FALSE/TRUE/' ~/.config/xfce4/terminal/terminalrc"                                                                                          
+
+		" au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"                                                                                          
+		" au InsertLeave * silent execute "!sed -i.bak -e '/MiscCursorBlinks/s/TRUE/FALSE/' ~/.config/xfce4/terminal/terminalrc"                                                                                          
+
+		" au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_IBEAM/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"  
+		" au VimLeave * silent execute "!sed -i.bak -e '/MiscCursorBlinks/s/TRUE/FALSE/' ~/.config/xfce4/terminal/terminalrc"  
+	" endif
+
 	set numberwidth=3  "行号栏宽度
 	set nowrap	"禁止自动换行
 	set linespace=0  "字符间插入的像素行数目
@@ -51,27 +222,36 @@
 	set t_Co=256
 
 	set nobackup	"设置无备份文件
+	set backupcopy=yes " 设置备份时的行为为覆盖
 	set noswapfile	"设置无临时文件
 	set vb t_vb=	"关闭提示音
 
+	set list
+	set listchars=tab:│\ 
+	set listchars+=trail:·
+	set listchars+=extends:❯
+	set listchars+=precedes:❮
+	" set listchars+=eol:↲
+	" set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
+	" for gvim
+	if has("gui_running") 
+		" feel free to choose :set background=light for a different style 
+		set background=dark 
+		colorscheme peaksea
+
+		set guioptions-=m   "不显示菜单
+		set guioptions-=T   "不显示工具栏
+		set guioptions=   "不
+		set guifont=monaco\ 10
+	endif 
+
 "}}}
 
-"{{{ ->热键配置
+"{{{ -> keys 配置
 
-	let mapleader=","  "修改leader键为逗号
-
-	nnoremap <leader><space> :noh<cr>  "使用<leader>空格来取消高亮
-	nnoremap <leader>p :set paste!<cr>  "切换粘帖模式
-
-	" 文件类型切换
-	" nmap <leader>fj :set ft=javascript<cr>
-	" nmap <leader>fc :set ft=css<cr>
-	" nmap <leader>fh :set ft=html<cr>
-	
-	"标签切换"
-	set autochdir
-	nmap <leader>h :tabp<cr>
-	nmap <leader>l :tabn<cr>
+	" Shiftless
+	noremap ; :
 
 	"窗口切换 <c-k,j,h,l>
 	noremap <c-k> <c-w>k
@@ -79,14 +259,17 @@
 	noremap <c-h> <c-w>h
 	noremap <c-l> <c-w>l
 
+	"窗口关闭
+	noremap <c-c> <c-w>c
+
 	"插入模式 <c-k,j,h,l,u>
 	inoremap <c-k> <up>
 	inoremap <c-j> <down>
 	inoremap <c-h> <left>
 	inoremap <c-l> <right>
 	inoremap <c-u> <end>
-	" inoremap <c-m> <c-o>o  "不行 原来cm是enter的本体
-	" inoremap <c-i> <esc>	"不行 原来ci是tab的本体
+	" inoremap <c-m> <c-o>o  "不行 原来cm是enter
+	" inoremap <c-i> <esc>	"不行 原来ci是tab
 
 	"括号填充
 	inoremap ( ()<left>
@@ -112,103 +295,37 @@
 		endif
 	endf
 
-"}}}
 
-"{{{ ->vundle配置
-	set nocompatible	"禁用vi兼容模式"
-	filetype off	"禁用文件类型侦测"
+	" --- leader keys ---
+	let mapleader=","  "修改leader键为逗号
 
-	set rtp+=/home/boyin/.vim/bundle/Vundle.vim
-	call vundle#begin()
+	" edit .vimrc
+	nmap <leader>e :e ~/.vimrc<cr>
+	nmap <leader>r :source ~/.vimrc<cr>
 
-	" 使用vundle来管理插件，这个必须有"
-	Plugin 'VundleVim/Vundle.vim'
+	nnoremap <leader><space> :noh<cr>  "使用<leader>空格来取消高亮
+	nnoremap <leader>p :set paste!<cr>  "切换粘帖模式
 
-	" editorconfig先注释了
-	" Plugin 'editorconfig/editorconfig-vim'
+	" 文件类型切换
+  nmap <leader>fh :set ft=html<cr>
+  nmap <leader>fc :set ft=css<cr>
+  nmap <leader>fj :set ft=javascript<cr>
+  nmap <leader>fv :set ft=vue<cr>
+	
+	"标签切换"
+	nmap <leader>h :tabp<cr>
+	nmap <leader>l :tabn<cr>
+	nmap <leader>j :bn<cr>
+	nmap <leader>k :bp<cr>
 
-	" Plugin 'The-NERD-tree'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-	Plugin 'The-NERD-Commenter'
-
-	" 语法高亮
-	Plugin 'sheerun/vim-polyglot'
-
-	" 类似vim-powerline的工具栏美化工具
-	Plugin 'vim-airline/vim-airline'
-
-	" 快速移动光标
-	Plugin 'EasyMotion'
-
-	" 快速修环绕字符
-	Plugin 'tpope/vim-surround'
-
-	" 类似sublime text 多光标批量操作
-	Plugin 'terryma/vim-multiple-cursors'
-
-	" 类似 ctrlp 模糊查找插件
-	Plugin 'Yggdroot/LeaderF'
-
-	" Track the engine.
-	Plugin 'SirVer/ultisnips'
-
-	" Snippets are separated from the engine. Add this if you want them:
-	Plugin 'honza/vim-snippets'
-
-	" Emmet(原名:Zen Coding)是前端开发快速输入代码一种方式
-	Plugin 'mattn/emmet-vim'
-
-
-	" for javascript
-	Plugin 'pangloss/vim-javascript'
-	" for react.js
-	Plugin 'mxw/vim-jsx'
-
-	""Plugin 'vim-less'
-	""Plugin 'digitaltoad/vim-jade.git'
-
-	call vundle#end()  "required"
-	filetype plugin indent on "required"
-"}}}
-
-"{{{ ->插件配置
-	nmap <leader>nt :NERDTreeToggle<cr>
-	noremap <c-\> :NERDTreeToggle<cr>
-
-	" vim-airline
-	let g:airline#extensions#tabline#enabled = 1
-	let g:airline#extensions#tabline#left_sep = ' '
-	let g:airline#extensions#tabline#left_alt_sep = '|'
-
-	" easy-motion
-	let g:EasyMotion_leader_key = '\'
-
-	" LeaderF
-	let g:Lf_ShortcutF = '<C-P>'
-
-	" UltiSnips
-	" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-	let g:UltiSnipsExpandTrigger="<tab>"
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-	" If you want :UltiSnipsEdit to split your window.
-	let g:UltiSnipsEditSplit="vertical"
-	let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
-
-	" vim-jsx"
-	let g:jsx_ext_required = 0 " Allow JSX in normal JS files"
+	" set autochdir " for LeaderF disable it
 
 "}}}
 
+" test option
+hi Folded ctermbg=NONE
+hi LineNr ctermbg=0
 
-"自动命令，每次输入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
-""autocmd! bufwritepost .vimrc source ~/.vimrc
-
-""if exists('$TMUX')
-""	"echo 'yes'
-""else
-""	"echo 'no'
-""endif
+hi NonText ctermfg=247 guifg=#a73111 cterm=bold gui=bold
+hi SpecialKey ctermfg=236 guifg=#654321
 
