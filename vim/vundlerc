@@ -57,6 +57,26 @@ Plugin 'VundleVim/Vundle.vim'
   let NERDTreeShowBookmarks=1
 "}}}
 
+"{{{ -> 一般设置
+
+" Plugin 'vim-smooth-scroll'
+Plugin 'tpope/vim-surround'
+
+" EasyMotion 快速移动光标
+Plugin 'EasyMotion'
+let g:EasyMotion_leader_key = 'g'
+
+" 类似sublime text 多光标批量操作 <C-n>
+Plugin 'terryma/vim-multiple-cursors'
+
+"}}}
+
+"{{{ -> git支持
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
+Plugin 'airblade/vim-gitgutter'
+"}}}
+
 "{{{ -> 前端开发
 
 " Emmet(原名:Zen Coding)是前端开发快速输入代码一种方式
@@ -65,19 +85,6 @@ Plugin 'mattn/emmet-vim'
 " vue支持
 Plugin 'posva/vim-vue'
 autocmd FileType vue syntax sync fromstart
-
-"}}}
-
-"{{{ -> 一般设置
-
-" Plugin 'vim-smooth-scroll'
-
-" EasyMotion 快速移动光标
-Plugin 'EasyMotion'
-let g:EasyMotion_leader_key = 'g'
-
-" 类似sublime text 多光标批量操作 <C-n>
-Plugin 'terryma/vim-multiple-cursors'
 
 "}}}
 
